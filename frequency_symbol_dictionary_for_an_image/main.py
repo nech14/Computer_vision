@@ -19,7 +19,7 @@ def recognize(region):
                     return 'B'
                 return '8'
             
-            case 0: #A || 0 || P || D
+            case 0: #A || 0 || P || D || * with hole
                 buf_region_image = region.image.copy()
                 
                 if 1 in region.image.mean(0)[:2]:
