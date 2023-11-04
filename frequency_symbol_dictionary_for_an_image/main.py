@@ -36,14 +36,18 @@ def recognize(region):
                 buf_region_image[-1, :] = 1
                 buf_labeled = label(buf_region_image)
                 buf_regions = regionprops(buf_labeled)
+                if 1 in region.image.mean(1):
+                    return '*'
                 if buf_regions[0].euler_number == -1:
                     return 'A'
-
+                
                 return '0'
             
             case 1: #1 || W || X || * || /
-                if 1 in region.image.mean(0):
+                if ''.join(map(str, [1.,1.])) in ''.join(map(str, region.image.mean(0))):
                     return '1'
+                #if 1 in region.image.mean(0):
+                    #return '1'
                 buf_region_image = region.image.copy()
                 buf_region_image[[0,-1], :] = 1
                 buf_labeled = label(buf_region_image)
@@ -70,7 +74,6 @@ image_binary[image_binary>0] = 1
 image_bl = label(image_binary)
 
 regions = regionprops(image_bl)
-
 
 #96 - W
 #77 - 0
