@@ -4,6 +4,7 @@ import cv2
 import matplotlib.pyplot as plt
 from skimage.measure import label, regionprops
 
+all_count = 0
 for i in range(12):
     image = cv2.imread(f'images/{i+1}.jpg')
 
@@ -28,7 +29,8 @@ for i in range(12):
         count_pixels = np.count_nonzero(image_label == region.label)
         if (15 >x/y > 10 or 0.05<x/y < 0.1 or (count_pixels/(x*y) > 0.06 and count_pixels/(x*y) < 0.3)):
             pencils += 1
-
+            
+    all_count += pencils
     if pencils == 1:
         print(f"Image №{i+1} shows {pencils} pencil")
     else:
@@ -39,3 +41,4 @@ for i in range(12):
     #plt.show()
 
 
+print(f"Images shows {all_count} pencils")
