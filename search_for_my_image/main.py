@@ -64,4 +64,4 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 
-print(counter, frams_c)
+print(f"My picture appears {counter} times out of {frams_c}")
